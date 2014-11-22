@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Zendesk Extension",
+  "description": "This extension adds functionality to zendesk.",
+  "version": "1.0",
+
+  "permissions": [
+   "tabs", 
+  "http://kimonolabs.zendesk.com/*",
+   "webNavigation"
+  ],
+
+  "background": {
+   "scripts": ["jquery-1.11.1.min.js"],
+   "persistent": true
+   },
+
+
+   "content_scripts": [
+   {
+    "matches": ["https://kimonolabs.zendesk.com/agent/tickets/*"],
+    "js": ["myscript.js"]
+  }
+  ]
+
+}
+
+
+
