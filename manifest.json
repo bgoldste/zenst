@@ -11,16 +11,12 @@
    "webNavigation"
   ],
 
-  "background": {
-   "scripts": ["jquery-1.11.1.min.js"],
-   "persistent": true
-   },
 
 
    "content_scripts": [
    {
     "matches": ["https://kimonolabs.zendesk.com/agent/tickets/*"],
-    "js": ["myscript.js"]
+    "js": ["jquery-1.11.1.min.js", "myscript.js"]
   }
   ]
 

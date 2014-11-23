@@ -1,40 +1,21 @@
-
-
-setInterval(addAdmin, 300);
-function addAdmin() {
+setInterval(addLinks, 2000);
+function addLinks(){
+	//append email to 
+	//will prob break if no email due to being correlated to index?
+	$.each($('a.email').parent(), function(index, value){
+		console.log($(this).children('a.email').html());
+		//console.log($(this.children));
 	
-	//alert('extension running. all is gucc in the world');
-	console.log('extension running. all is gucc in the world');
-
-	if (typeof last_url_updated === 'undefined' ||   window.location.href != last_url_updated){
-
-		//console.log ('last url ' + last_url_updated);
-		//console.log('window.location.href' + window.location.href);
-		var email = document.getElementsByClassName('email').item().textContent;
-		var url =  "https://localhost:4000/admin/userview?email=" + email; 
-		//var url =  document.createTextNode("https://kimonolabs.com/admin/userview?email=" + email);
-
-
-		var node = document.createElement("a");    
-		node.className = "adminlink"
-		node.text = "view in admin";
-		node.href = url;             // Create a <li> node
-		node.target = "_blank";
-		last_url_updated = window.location.href;
-		count = 0;
-		for (var i=0; document.getElementsByClassName("ember-view sender").length; i++){
-			document.getElementsByClassName("ember-view sender")[i].appendChild(node); 
+		//if it has NOT been added, add it
+		if ( $(this).children('a.adminlink').length  < 1 ){
+			console.log($(this).html() + " HAS BEEN FOUND TO NOT HAVE EMAIL ADDED. adding now.");
+			var node = document.createElement('a');
+			node.className = "adminlink";
+			node.text = "ADMIN VIEW";
+			node.href = "https://localhost:4000/admin/userview?email=" + $(this).children('a.email').html();
+			node.target = "_blank";
+			this.appendChild(node);
+			console.log('node ' + node);
 		}
-		count++;
-	}
-
-} 
-
-
-
-// var a = document.createElement('a');
-// var linkText = document.createTextNode("my title text");
-// a.appendChild(linkText);
-// a.title = "my title text";
-// a.href = "http://example.com";
-// document.body.appendChild(a);
+	});
+};
