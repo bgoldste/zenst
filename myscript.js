@@ -2,8 +2,11 @@ setInterval(addLinks, 2000);
 function addLinks(){
 	//append email to 
 	//will prob break if no email due to being correlated to index?
+	$('.adminlink').remove();
+
 	$.each($('a.email').parent(), function(index, value){
-		console.log('running');
+	
+
 		//console.log($(this.children));
 	
 		//if it has NOT been added, add it
@@ -12,10 +15,11 @@ function addLinks(){
 			var node = document.createElement('a');
 			node.className = "adminlink";
 			node.text = "Kimono Admin View";
-			node.href = "https://localhost:4000/admin/userview?email=" + $(this).children('a.email').html();
+			node.href = "https://www.kimonolabs.com/admin/userview?email=" + $(this).children('a.email').html();
 			node.target = "_blank";
 			this.appendChild(node);
 			console.log('node appended');
 		}
 	});
+
 };
